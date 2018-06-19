@@ -1,0 +1,15 @@
+Explicación Poda Alfa Beta
+
+Saber como gano--->
+*Ejemplo J1=3,J2=2, restamos 3-2 y sacamos la diferencia, si es fin de partida comparamos y se le asigna infinito o menos infinito .
+*valor positivo y mayor(Granero) y lo demás a 0, se le asigna valor infinito de puntuacion
+
+
+
+
+
+Minimax
+-Vamos a reperesentar en un arbol nuestros movimientos y los movimientos del contrario.
+-Evaluamos el árbol cuando es "nuestro turno"
+  *Si nos toca mover intentamos maximizar.
+  *Si le toca mover al contrario intenta maximizar su jugada, es decir, minimizar nuestro turno o beneficio.

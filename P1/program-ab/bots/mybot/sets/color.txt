@@ -1,0 +1,12 @@
+rojo
+amarillo
+verde
+naranja
+morado
+marron
+verde morado
+amarillo naranja
+amarillo morado
+amarillo rojo verde
+amarillo verde
+verde amarillo

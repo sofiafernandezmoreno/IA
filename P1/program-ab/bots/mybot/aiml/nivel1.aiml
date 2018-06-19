@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- File: nivel1.aiml -->
+	<!-- Author: Sofía Fernández Moreno -->
+	<!-- Last modified: 7 Marzo, 2018 -->
+
+<!-- Inicio del juego -->
+<!-- utilizando ejemplo 5 del anexo para inicializar variables globales y locales -->
+<topic name="nivel1">
+<!-->
+<category>
+        <pattern>inicio</pattern>
+        
+        <template>
+            <think>
+        
+                    <set name="list_fruit"> 
+                        fresa
+                        manzana
+                        naranja
+                        kiwi
+                        mandarina
+                        pinia
+                        mango
+                        melocoton
+                        higo
+                        ciruela
+                        pera
+                        platano
+                        coco
+                        aguacate
+                        nuez
+                        cereza
+                    </set>
+                    
+                    <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                    <set var="pos"><srai>RANDOM <get var="cantidad"/></srai></set>
+                    <set name="fruta">
+                        <srai>
+                            SelECTITEM <get var="pos"/> IN <get name="list_fruit"/>
+                        </srai>
+                    </set>
+            </think>
+            Variables declaradas e inicializadas para preguntar
+        </template>
+    </category>
+
+-->
+
+
+
+
+<!--Preguntas al agente sobre las caracteristicas de la fruta-->
+
+<!-- Color -->
+    
+<category>
+    <pattern>la fruta es de color *</pattern>
+    <template>
+        <think>
+            <set var="color_fruta">
+                <map name="color"><get name="fruta"/></map>
+            </set>
+            
+            <set var="iguales">
+                <srai>COMPARE <get var="color_fruta"/> WITH <star/></srai>
+            </set>
+        </think>
+        <condition var="iguales">
+            <li value="YES"> si. Es <star/>.</li>
+            <li> No. No es <star/>.</li>
+        </condition>
+    </template>
+</category>
+
+    <category>
+        <pattern>es de color *</pattern>
+        <template>
+            <srai>la fruta es de color <star/></srai>
+        </template>
+    </category>
+
+
+
+
+    <!-- Tamanio -->
+  <category>
+    <pattern>la fruta es de tamanio *</pattern>
+    <template>
+        <think>
+            <set var="tamanio_fruta">
+                <map name="tamanio"><get name="fruta"/></map>
+            </set>
+            <set var="iguales">
+                <srai>COMPARE <get var="tamanio_fruta"/> WITH <star/></srai>
+            </set>
+        </think>
+        <condition var="iguales">
+            <li value="YES"> si. Es <star/>.</li>
+            <li> No. No es <star/>.</li>
+        </condition>
+    </template>
+</category>
+   
+    <category>
+        <pattern>es de tamanio *</pattern>
+        <template>
+            <srai>la fruta es de tamanio <star/></srai>
+        </template>
+    </category>
+    
+    <!-- Sabor -->
+    
+    
+    <category>
+    <pattern>la fruta es de sabor *</pattern>
+    <template>
+        <think>
+            <set var="sabor_fruta">
+                <map name="sabor"><get name="fruta"/></map>
+            </set>
+            <set var="iguales">
+                <srai>COMPARE <get var="sabor_fruta"/> WITH <star/></srai>
+            </set>
+        </think>
+        <condition var="iguales">
+            <li value="YES"> si. Es <star/>. </li>
+            <li> No.No es <star/>.</li>
+        </condition>
+    </template>
+</category>
+
+    <category>
+        <pattern>es de sabor *</pattern>
+        <template>
+            <srai>la fruta es de sabor <star/></srai>
+        </template>
+    </category>
+    
+    
+    <!-- Vitamina A -->
+    
+    <category>
+    <pattern>la fruta tiene vitamina a</pattern>
+    <template>
+        <think>
+            <set var="lleva_a">
+                <map name="vitaminaa"><get name="fruta"/></map>
+            </set>
+        </think>
+        <get var="lleva_a"/>
+    </template>
+</category>
+
+    <category>
+        <pattern>lleva vitamina a</pattern>
+        <template>
+            <srai>la fruta tiene vitamina a</srai>
+        </template>
+    </category>
+    
+    <!-- Vitamina B -->
+    <category>
+    <pattern>la fruta tiene vitamina b</pattern>
+    <template>
+        <think>
+            <set var="lleva_b">
+                <map name="vitaminab"><get name="fruta"/></map>
+            </set>
+        </think>
+        <get var="lleva_b"/>
+    </template>
+</category>
+
+    <category>
+        <pattern>lleva vitamina b</pattern>
+        <template>
+            <srai>la fruta tiene vitamina b</srai>
+        </template>
+    </category>
+    
+    <!-- Vitamina C -->
+    <category>
+    <pattern>la fruta tiene vitamina c</pattern>
+    <template>
+        <think>
+            <set var="lleva_c">
+                <map name="vitaminac"><get name="fruta"/></map>
+            </set>
+        </think>
+        <get var="lleva_c"/>
+    </template>
+</category>
+
+     <category>
+        <pattern>lleva vitamina c</pattern>
+        <template>
+            <srai>la fruta tiene vitamina c</srai>
+        </template>
+    </category>
+
+
+
+
+
+<category>
+    <pattern>La fruta en la que estabas pensando es [el la] *</pattern>
+    <template>
+        <think>
+            <set var="iguales">
+                <srai>COMPARE <get name="fruta"/> WITH <star/></srai>
+            </set>
+        </think>
+        <condition var="iguales">
+            <li value="YES"> Lo has adivinado, repetimos la partida, vuelve a escribir juego para comenzar</li>
+            <li> No, no lo has acertado </li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>verdadero</pattern>
+    <template>si</template>
+</category>
+
+<category>
+    <pattern>falso</pattern>
+    <template>No</template>
+</category>
+
+
+<!-- las verdaderoes  -->
+
+<category>
+    <pattern>el platano es Amarillo</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+<category>
+    <pattern>el platano es Mediano</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el platano es Dulce </pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+<category>
+    <pattern>la manzana es Amarilla </pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la manzana es roja</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la manzana es verde</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la manzana es mediana</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la manzana es semiacida</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+<category>
+    <pattern>la fresa es roja</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la fresa es pequeña</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la fresa es semiacida</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+<category>
+    <pattern>La naranja es naranja </pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>La naranja es mediano </pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>La naranja es acido</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+
+
+<category>
+    <pattern>el kiwi es verde</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el kiwi es amarillo </pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el kiwi es pequeño</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el kiwi es acido</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+
+<category>
+    <pattern>La mandarina es naranja</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>La mandarina es pequeña</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>La mandarina es acido</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+
+<category>
+    <pattern>la piña es amarilla</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la piña es verde</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la piña es grande</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la piña es acida</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+
+
+<category>
+    <pattern>el mango es verde</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el mango es grande</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el mango es semiacido</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+
+<category>
+    <pattern>el melocoton es amarillo</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el melocoton es naranja</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el melocoton es mediano</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el melocoton es semiacido</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+
+
+<category>
+    <pattern>el higo es verde</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el higo es morado</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el higo es mediano</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el higo es pequeño</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el higo es dulce</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+
+<category>
+    <pattern>la ciruela es amarilla</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la ciruela es morada</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la ciruela es pequeña</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la ciruela es dulce</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+
+<category>
+    <pattern>la pera es verde</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la pera es amarilla</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la pera es mediana</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la pera es dulce</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+
+
+<category>
+    <pattern>el coco es marron</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el coco es grande</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el coco es neutro</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+<category>
+    <pattern>el aguacate es verde</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el aguacate es mediano</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el aguacate es neutro</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+
+
+
+<category>
+    <pattern>la nuez es marron</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la nuez es pequeña</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la nuez es neutra</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+
+<category>
+    <pattern>la cereza es roja</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+<category>
+    <pattern>la cereza es pequeña</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la cereza es semiacida</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+
+
+
+<!-- las falsoes de las frutas -->
+
+
+<category>
+    <pattern>el platano es [rojo naranja verde morado marron grande pequeño acido semiacido]</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>la manzana es [naranja marron morada pequeña grande  acida  dulce  neutra]</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>la fresa es [naranja  marron  verde  amarilla  morada  mediana  grande  acida  dulce  neutra] </pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>La naranja es [roja  verde  marron  verde  amarilla   grande  pequeña   semiacida  dulce  neutra] </pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>el kiwi es [rojo  marron  naranja  morado  mediano  grande  semiacido  dulce  neutra]</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>La mandarina es [roja  marron  verde  amarilla  morada  mediana  grande  semiacida  neutra  dulce]</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>la piña es [roja  morada  marron  naranja  mediana  pequeña  semiacida  dulce  neutra]</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>el mango es [rojo  amarillo  marron  naranja  marron  mediano  pequeño  acido  dulce  neutro] </pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>el melocoton es  [rojo  marron  morado  verde  pequeño  grande  acido  dulce  neutro] </pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>el higo es  [rojo  amarillo  marron  naranja  mediano  grande  acido  semiacido  neutro] </pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>la ciruela es  [roja  marron  verde  naranja  mediana  grande  acida  semiacida  neutra ]</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>la pera es  [rojo  marron  morado  naranja  pequeño  grande  acido  semiacido  neutro ]</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>el coco es  [rojo  amarillo  morado  verde  naranja  pequeño  mediano  acido  semiacido  dulce ]</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>el aguacate es  [rojo  amarillo  marron  morado  naranja  pequeño  grande  acido  semiacido  dulce ]</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>la nuez es [ roja  amarilla  morada  verde  naranja  mediana  grande  acida  semiacida  dulce ]</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>la cereza es [ amarilla  marron  morada  verde  naranja  pequeña  mediana  grande  acida  semiacida  dulce  neutra] </pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+
+
+
+
+<category>
+    <pattern> [el  la ]  [fresa  manzana  naranja  piña  higo  pera  platano  aguacate  coco]  tiene vitamina a</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern> [la  el]   [fresa  manzana  naranja  piña  higo  pera  platano  aguacate  coco]  tiene vitamina  [b  c] </pattern>
+    <template><srai>Afirmación</srai></template>
+</category>
+
+
+
+<category>
+    <pattern>el kiwi tiene vitamina [ a  b] </pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern>el kiwi tiene vitamina c</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la mandarina tiene vitamina a</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la mandarina tiene vitamina [ b  c ]</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+<category>
+    <pattern> [la  el]  [ mango  ciruela ] tiene vitamina [ a  b  c ]</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el melocoton tiene vitamina [ a  b ]</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>el melocoton tiene vitamina c</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+
+<category>
+    <pattern>la nuez tiene vitamina b</pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la nuez tiene vitamina [ a  c] </pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+
+<category>
+    <pattern>la cereza tiene vitamina  [a  c] </pattern>
+    <template><srai>verdadero</srai></template>
+</category>
+
+<category>
+    <pattern>la cereza tiene vitamina b</pattern>
+    <template><srai>falso</srai></template>
+</category>
+
+
+
+
+<!--PARA VOLVER A EMPEZAR EN CASO DE ADIVINAR LA FRUTA
+<category>
+    <pattern>vale</pattern>
+    <that>Lo has adivinado repetimos la partida</that>
+    <template><srai>inicio</srai></template>
+</category>
+-->
+</topic>
+
+</aiml>

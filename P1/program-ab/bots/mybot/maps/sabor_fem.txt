@@ -1,0 +1,4 @@
+semiacida:semiacido
+acida:acido
+dulce:dulce
+neutra:neutro

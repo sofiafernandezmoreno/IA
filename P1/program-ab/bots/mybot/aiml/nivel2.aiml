@@ -1,0 +1,1815 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- File: nivel1.aiml -->
+	<!-- Author: Sofía Fernández Moreno -->
+	<!-- Last modified: 7 Marzo, 2018 -->
+
+<!-- Inicio del juego -->
+
+<category>
+    <pattern>^ juego ^</pattern>
+    <template>
+        Modo de juego:
+        1-El humano trata de acertar la fruta pensada por el agente
+        2-El agente trata de acertar la fruta pensada por el humano
+
+        <think>
+            <set name="topic"> adivinafruta </set>
+        </think>
+    </template>
+</category>
+
+
+<topic name="adivinafruta">
+
+
+
+<category>
+        <pattern>1</pattern>
+        
+        <template> venga preguntame cosas de la fruta
+            <think>
+                    <set name="topic">nivel1</set>
+                    <set name="list_fruit"> 
+                        fresa
+                        manzana
+                        naranja
+                        kiwi
+                        mandarina
+                        pinia
+                        mango
+                        melocoton
+                        higo
+                        ciruela
+                        pera
+                        platano
+                        coco
+                        aguacate
+                        nuez
+                        cereza
+                    </set>
+                    
+                    <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                    <set var="pos"><srai>RANDOM <get var="cantidad"/></srai></set>
+                    <set name="fruta">
+                        <srai>
+                            SELECTITEM <get var="pos"/> IN <get name="list_fruit"/>
+                        </srai>
+                    </set>
+            </think>
+    Variables declaradas, solamente queda que me hagas preguntas para que puedas acertar la fruta.
+        </template>
+    </category>
+
+<category>
+        <pattern>2</pattern>
+        
+        <template>voy a preguntarte sobre rasgos de la fruta para poder adivinarla, te parece?
+        <think>
+        <set name="topic">nivel2</set>
+            
+            <set name="list_fruit">
+                        fresa
+                        manzana
+                        naranja
+                        kiwi
+                        mandarina
+                        pinia
+                        mango
+                        melocoton
+                        higo
+                        ciruela
+                        pera
+                        platano
+                        coco
+                        aguacate
+                        nuez
+                        cereza
+            </set>
+            <set name="list_preguntas">
+                color
+                sabor
+                tamanio
+                vitaminaa
+                vitaminab
+                vitaminac
+            </set>
+            <set name="color_fruta">
+                rojo
+                amarillo
+                verde
+                naranja
+                morado
+                marron
+            </set>
+             <set name="sabor_fruta">
+                semiacido
+                acido
+                dulce
+                neutro
+
+            </set>
+              <set name="tamanio_fruta">
+                grande
+                pequenio
+                mediano
+                
+
+            </set>
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <set var="pos"><srai>RANDOM <get var="cantidad"/></srai></set>
+            <set name="fruta">
+                <srai>
+                    SELECTITEM <get var="pos"/> IN <get name="list_fruit"/>
+                </srai>
+            </set>
+        </think>
+        </template>
+    </category>
+</topic>
+<topic name="nivel2">
+
+
+    <category>
+            <pattern>vale</pattern>
+            <template>
+            
+                Tiene vitamina a?
+                <!--random>
+                            <li>Es de sabor <get name="sabor_elegido"/>?</li>
+                            <li>Es de tamanio <get name="tamanio_elegido"/>?</li>
+                            <li>Es de color <get name="color_elegido"/>?</li>
+                </random-->
+            </template>
+    </category>
+
+
+<!--Color-->
+<category>
+    <pattern>si</pattern>
+    <that>Es de color naranja </that> 
+    <template>
+    <think>
+                                <srai>DESCARTAR fresa</srai>
+                                <srai>DESCARTAR manzana</srai>
+                                <srai>DESCARTAR kiwi</srai>
+                                <srai>DESCARTAR pinia</srai>
+                                <srai>DESCARTAR mango</srai>
+                                
+                                <srai>DESCARTAR higo</srai>
+                                <srai>DESCARTAR ciruela</srai>
+                                <srai>DESCARTAR pera</srai>
+                                <srai>DESCARTAR platano</srai>
+                                <srai>DESCARTAR coco</srai>
+                                <srai>DESCARTAR aguacate</srai>
+                                <srai>DESCARTAR nuez</srai>
+                                <srai>DESCARTAR cereza</srai>
+                                <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                <srai>DESCARTARPREGUNTASCOLOR naranja</srai>
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            </condition>
+                    
+    </template>
+</category>
+
+                    <category>
+    <pattern>si</pattern>
+    <that>Es de color amarillo </that> 
+    <template>
+    <think>
+                    
+                                <srai>DESCARTAR fresa</srai>
+                                
+                                
+                                
+                                <srai>DESCARTAR mango</srai>
+
+                                <srai>DESCARTAR higo</srai>
+                                
+                                
+                                <srai>DESCARTAR mandarina</srai>
+                                <srai>DESCARTAR coco</srai>
+                                <srai>DESCARTAR aguacate</srai>
+                                <srai>DESCARTAR nuez</srai>
+                                <srai>DESCARTAR cereza</srai>
+                                <srai>DESCARTAR naranja</srai>
+                                <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                <srai>DESCARTARPREGUNTASCOLOR amarillo</srai>
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            </condition>
+                        </template>
+</category>
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de color verde </that> 
+    <template>
+    <think>
+                    
+                                <srai>DESCARTAR fresa</srai>
+                                
+                                
+                            
+                               
+                                <srai>DESCARTAR melocoton</srai>
+                                
+                                <srai>DESCARTAR ciruela</srai>
+                                
+                                <srai>DESCARTAR mandarina</srai>
+                                <srai>DESCARTAR coco</srai>
+                                <srai>DESCARTAR aguacate</srai>
+                                <srai>DESCARTAR nuez</srai>
+                                <srai>DESCARTAR cereza</srai>
+                                <srai>DESCARTAR naranja</srai>
+                                
+                                <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                <srai>DESCARTARPREGUNTASCOLOR verde</srai>
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            </condition>
+                       </template>
+</category>
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de color morado </that> 
+    <template>
+    <think>
+                    
+                                 <srai>DESCARTAR fresa</srai>
+                                <srai>DESCARTAR manzana</srai>
+                                <srai>DESCARTAR kiwi</srai>
+                                <srai>DESCARTAR pinia</srai>
+                               
+                                <srai>DESCARTAR melocoton</srai>
+                                
+                                <srai>DESCARTAR pera</srai>
+                                <srai>DESCARTAR mandarina</srai>
+                                <srai>DESCARTAR coco</srai>
+                                <srai>DESCARTAR aguacate</srai>
+                                <srai>DESCARTAR nuez</srai>
+                                <srai>DESCARTAR cereza</srai>
+                                <srai>DESCARTAR naranja</srai>
+                                <srai>DESCARTAR mango</srai>
+                                <srai>DESCARTAR platano</srai>
+                                <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                <srai>DESCARTARPREGUNTASCOLOR morado</srai>
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            </condition>
+                       </template>
+</category>
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de color marron </that> 
+    <template>
+    <think>
+                    
+                                 <srai>DESCARTAR fresa</srai>
+                                <srai>DESCARTAR manzana</srai>
+                                <srai>DESCARTAR kiwi</srai>
+                                <srai>DESCARTAR pinia</srai>
+                               
+                                <srai>DESCARTAR melocoton</srai>
+                                <srai>DESCARTAR higo</srai>
+                                <srai>DESCARTAR ciruela</srai>
+                                <srai>DESCARTAR pera</srai>
+                                <srai>DESCARTAR mandarina</srai>
+                                
+                                <srai>DESCARTAR aguacate</srai>
+                                
+                                <srai>DESCARTAR cereza</srai>
+                                <srai>DESCARTAR naranja</srai>
+                                <srai>DESCARTAR mango</srai>
+                                <srai>DESCARTAR platano</srai>
+                                
+                                <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                <srai>DESCARTARPREGUNTASCOLOR marron</srai>
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            </condition>
+                      </template>
+</category>
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de color rojo </that> 
+    <template>
+    <think>     
+                    
+                                <srai>DESCARTAR naranja</srai>
+                                <srai>DESCARTAR kiwi</srai>
+                                <srai>DESCARTAR mandarina</srai>
+                                <srai>DESCARTAR pinia</srai>
+                                <srai>DESCARTAR mango</srai>
+                                <srai>DESCARTAR melocoton</srai>
+                                <srai>DESCARTAR higo</srai>
+                                <srai>DESCARTAR ciruela</srai>
+                                <srai>DESCARTAR pera</srai>
+                                <srai>DESCARTAR platano</srai>
+                                <srai>DESCARTAR coco</srai>
+                                <srai>DESCARTAR aguacate</srai>
+                                <srai>DESCARTAR nuez</srai>
+                                <srai>DESCARTARPREGUNTASCOLOR rojo</srai>
+                                <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                
+                                
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            </condition>
+                    
+        
+        
+        
+        
+        
+    </template>
+</category>
+
+
+<category>
+    <pattern>no</pattern>
+    <that>Es de color naranja</that> 
+    <template>
+        
+                            <think>
+                                <srai>DESCARTAR naranja</srai>
+                                <srai>DESCARTAR mandarina</srai>
+                                <srai>DESCARTAR melocoton</srai>
+                                <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                <srai>DESCARTARPREGUNTASCOLOR naranja</srai>
+                                
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            </condition>
+                    
+                        </template>
+</category>
+
+
+<category>
+    <pattern>no</pattern>
+    <that>Es de color amarillo</that> 
+    <template>
+        
+        <think>
+                                <srai>DESCARTAR platano</srai>
+                                <srai>DESCARTAR manzana</srai>
+                                <srai>DESCARTAR melocoton</srai>
+                                <srai>DESCARTAR ciruela</srai>
+                                <srai>DESCARTAR kiwi</srai>
+                                <srai>DESCARTAR pera</srai>
+                                <srai>DESCARTAR pinia</srai>
+                                <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                <srai>DESCARTARPREGUNTASCOLOR amarillo</srai>
+                                
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            </condition>
+                        </template>
+</category>
+
+<category>
+    <pattern>no</pattern>
+    <that>Es de color verde</that> 
+    <template>
+        
+        <think>
+                    
+                                <srai>DESCARTAR mango</srai>
+                                <srai>DESCARTAR aguacate</srai>
+                                <srai>DESCARTAR kiwi</srai>
+                                <srai>DESCARTAR pera</srai>
+                                <srai>DESCARTAR manzana</srai>
+                                <srai>DESCARTAR pinia</srai>
+                                <srai>DESCARTAR higo</srai>
+                                <srai>DESCARTARPREGUNTASCOLOR verde</srai>
+                                
+                                <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                
+                                
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            </condition>
+                        </template>
+</category>
+    
+    <category>
+    <pattern>no</pattern>
+    <that>Es de color morado</that> 
+    <template>
+        
+        <think>
+                                <srai>DESCARTAR higo</srai>
+                                <srai>DESCARTAR ciruela</srai>
+
+                                <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                <srai>DESCARTARPREGUNTASCOLOR morado</srai>
+                                
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            </condition>
+                       </template>
+</category>
+
+<category>
+    <pattern>no</pattern>
+    <that>Es de color marron</that> 
+    <template>
+        
+        <think>
+                    
+                                 <srai>DESCARTAR coco</srai>
+                                <srai>DESCARTAR nuez</srai>
+                                <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                <srai>DESCARTARPREGUNTASCOLOR marron</srai>
+                                
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            </condition>
+                        </template>
+</category>
+
+           <category>
+    <pattern>no</pattern>
+    <that>Es de color rojo</that> 
+    <template>
+        
+        <think>         
+                    
+                                    <srai>DESCARTAR fresa</srai>
+                                    <srai>DESCARTAR cereza</srai>
+                                    <srai>DESCARTAR manzana</srai>
+                                    <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                    <srai>DESCARTARPREGUNTASCOLOR rojo</srai>
+                                
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+                            
+                            </condition>
+                 
+        
+        
+        
+        
+            
+    </template>
+</category>
+
+<!--Para mas de un color-->
+<category>
+    <pattern>si</pattern>
+    <that>Es de color amarillo rojo verde</that> 
+    <template>
+        <think>
+            <srai>DESCARTAR naranja</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR mandarina</srai>
+            <srai>DESCARTAR pinia</srai>
+            <srai>DESCARTAR mango</srai>
+            <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            <srai>DESCARTAR nuez</srai>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR cereza</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+              <srai>DESCARTARPREGUNTASCOLOR amarillo rojo verde</srai>                  
+                                
+            
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+            <li value="1">La fruta en la que estabas pensando es la manzana</li>
+           <li>
+           
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+        
+        
+        </condition> 
+        
+    </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de color amarillo rojo verde</that> 
+    <template>
+        <think>
+            <srai>DESCARTAR manzana</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+             <srai>DESCARTARPREGUNTASCOLOR amarillo rojo verde</srai>                                     
+            
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+        
+        </condition> 
+    </template>
+</category>
+
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de color [verde amarillo,amarillo verde]</that> 
+    <template>
+        <think>
+            <srai>DESCARTAR naranja</srai>
+            
+            <srai>DESCARTAR mandarina</srai>
+            
+            <srai>DESCARTAR mango</srai>
+            <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            <srai>DESCARTAR nuez</srai>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR cereza</srai>
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTASCOLOR amarillo verde</srai>                                      
+            
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+        
+        </condition> 
+        
+    </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de color [verde amarillo,amarillo verde]</that> 
+    <template>
+        <think>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR pinia</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTARPREGUNTASCOLOR amarillo verde</srai>                                      
+            
+            
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                
+            
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+       
+        
+        </condition> 
+        
+    </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de color amarillo rojo verde</that> 
+    <template>
+        <think>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR pinia</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTARPREGUNTASCOLOR amarillo rojo verde</srai>                                      
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+        
+        </condition> 
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de color amarillo naranja</that> 
+    <template>
+        <think>
+            <srai>DESCARTAR naranja</srai>
+            
+            <srai>DESCARTAR mandarina</srai>
+            
+            <srai>DESCARTAR mango</srai>
+            
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            <srai>DESCARTAR nuez</srai>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR cereza</srai>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR pinia</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTARPREGUNTASCOLOR amarillo naranja</srai>                                      
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es el melocoton</li>
+        <li>
+        
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+        
+        </condition> 
+        
+    </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de color amarillo naranja</that> 
+    <template>
+        <think>
+            <srai>DESCARTAR melocoton</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTASCOLOR amarillo naranja</srai>                                      
+                                
+            
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+        
+        </condition> 
+    </template>
+</category>
+
+
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de color verde morado</that> 
+    <template>
+        <think>
+            <srai>DESCARTAR naranja</srai>
+            
+            <srai>DESCARTAR mandarina</srai>
+            
+            <srai>DESCARTAR mango</srai>
+            
+            <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR ciruela</srai>
+            
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            <srai>DESCARTAR nuez</srai>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR cereza</srai>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR pinia</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTARPREGUNTASCOLOR verde morado</srai>                                      
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es el higo</li>
+        <li>
+        
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+        
+        </condition> 
+        
+    </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de color verde morado</that> 
+    <template>
+        <think>
+            <srai>DESCARTAR higo</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTASCOLOR  verde morado</srai>                                      
+                                
+            
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+        
+        </condition> 
+    </template>
+</category>
+
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de color amarillo morado</that> 
+    <template>
+        <think>
+            <srai>DESCARTAR naranja</srai>
+            
+            <srai>DESCARTAR mandarina</srai>
+            
+            <srai>DESCARTAR mango</srai>
+            
+            <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR higo</srai>
+            
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            <srai>DESCARTAR nuez</srai>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR cereza</srai>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR pinia</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTARPREGUNTASCOLOR amarillo morado</srai>                                      
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es la ciruela</li>
+       <li>
+       
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+       
+        
+        </condition> 
+        
+    </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de color amarillo morado</that> 
+    <template>
+        <think>
+            <srai>DESCARTAR ciruela</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTASCOLOR amarillo morado</srai>                                      
+                                
+            
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+       <li>
+       
+                            <random>
+                                
+                                    <li>Es de tamanio mediano</li>
+                                    <li>Es de tamanio pequenio</li>
+                                    <li>Es de tamanio grande</li>
+                                
+                            </random>
+                            </li>
+        
+        </condition> 
+    </template>
+</category>
+<!--Tamanio-->
+<category>
+    <pattern>si</pattern>
+    <that>Es de tamanio pequenio</that>
+    <template>
+        <think>
+            <srai>DESCARTAR naranja</srai>
+            
+            
+            <srai>DESCARTAR pinia</srai>
+            <srai>DESCARTAR mango</srai>
+            <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR manzana</srai>
+            
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                
+            <srai>DESCARTARPREGUNTASTAMANIO pequenio</srai>                                      
+            
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+            <random>
+                
+                    <li>Es de sabor acido</li>
+                    <li>Es de sabor semiacido</li>
+                    <li>Es de sabor dulce</li>
+                    <li>Es de sabor neutro</li>
+                
+            </random>
+        </li>
+        
+        
+        </condition>
+    </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de tamanio pequenio</that>
+    <template>
+        <think>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR mandarina</srai>
+            
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            
+            <srai>DESCARTAR nuez</srai>
+            
+            <srai>DESCARTAR cereza</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTASTAMANIO pequenio</srai>                                                         
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+        <random>
+                
+                    <li>Es de sabor acido</li>
+                    <li>Es de sabor semiacido</li>
+                    <li>Es de sabor dulce</li>
+                    <li>Es de sabor neutro</li>
+                
+            </random>
+        </li>
+        
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de sabor semiacido</that>
+    <template>
+        <think>
+            <srai>DESCARTAR naranja</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR mandarina</srai>
+            <srai>DESCARTAR pinia</srai>
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            <srai>DESCARTAR nuez</srai>
+            <srai>DESCARTAR cereza</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTASSABOR semiacido</srai>                                      
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+        Tiene vitamina a
+        </li>
+        </condition>
+    </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de sabor semiacido</that>
+    <template>
+        <think>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR mango</srai>
+            <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR cereza</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTASSABOR semiacido</srai>                                      
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+            Tiene vitamina a
+        </li>
+        </condition>
+    </template>
+</category>
+<category>
+    <pattern>si</pattern>
+    <that>Tiene vitamina a</that>
+    <template>
+        <think>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR naranja</srai>
+            <srai>DESCARTAR kiwi</srai>
+           <srai>DESCARTAR pinia</srai>
+            
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            
+            <srai>DESCARTAR nuez</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            
+            <srai>DESCARTARPREGUNTAS vitaminaa</srai>
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+        Tiene vitamina b</li>
+        </condition>
+    </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Tiene vitamina a</that>
+    <template>
+        <think>
+            <srai>DESCARTAR mandarina</srai>
+            <srai>DESCARTAR mango</srai>
+            <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR ciruela</srai>
+           <srai>DESCARTAR cereza</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTAS vitaminaa</srai>
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+        Tiene vitamina b</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>si</pattern>
+    <that>Tiene vitamina b</that>
+    <template>
+        <think>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR mandarina</srai>
+            <srai>DESCARTAR cereza</srai>
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTAS vitaminab</srai>
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+        Tiene vitamina c</li>
+        </condition>
+    </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Tiene vitamina b</that>
+    <template>
+        <think>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR naranja</srai>
+            <srai>DESCARTAR mango</srai>
+           <srai>DESCARTAR pinia</srai>
+           <srai>DESCARTAR melocoton</srai>
+            
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            
+            <srai>DESCARTAR nuez</srai>
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTAS vitaminab</srai>
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+        Tiene vitamina c</li>
+        </condition>
+    </template>
+</category>
+
+
+<category>
+    <pattern>si</pattern>
+    <that>Tiene vitamina c</that>
+    <template>
+        <think>
+            <srai>DESCARTAR mandarina</srai>
+            
+           <srai>DESCARTAR melocoton</srai>
+            
+            
+            
+            <srai>DESCARTAR nuez</srai>
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                          
+           <srai>DESCARTARPREGUNTAS vitaminac</srai> 
+           <set var="color_fruta">
+                <map name="color"><get name="fruta"/></map>
+            </set>
+
+                <set var="lista_color"> <get name="color_fruta"/> </set>
+				<set var="cantidad1"><srai>COUNT <get var="lista_color"/></srai></set>
+				<set var="pos1"><srai>RANDOM <get var="cantidad1"/></srai></set>
+				<set name="color_elegido">
+				<srai>
+				SELECTITEM <get var="pos1"/> IN <get var="lista_color"/>
+				</srai>
+                </set>
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        Es de color <get name="color_elegido"/>?</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>no</pattern>
+    <that>Tiene vitamina c</that>
+    <template>
+        <think>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR naranja</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR mango</srai>
+           <srai>DESCARTAR pinia</srai>
+           
+            
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            
+            <srai>DESCARTAR cereza</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                           
+                              
+            <srai>DESCARTARPREGUNTAS vitaminac</srai>
+            <set var="color_fruta">
+                <map name="color"><get name="fruta"/></map>
+                </set>
+
+                <set var="lista_color"> <get name="color_fruta"/> </set>
+				<set var="cantidad1"><srai>COUNT <get var="lista_color"/></srai></set>
+				<set var="pos1"><srai>RANDOM <get var="cantidad1"/></srai></set>
+				<set name="color_elegido">
+				<srai>
+				SELECTITEM <get var="pos1"/> IN <get var="lista_color"/>
+				</srai>
+                </set>
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+        Es de color <get name="color_elegido"/>?</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de tamanio grande</that>
+    <template>
+        <think>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR naranja</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR mandarina</srai>
+            <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTAR platano</srai>
+            
+            <srai>DESCARTAR aguacate</srai>
+            <srai>DESCARTAR nuez</srai>
+            <srai>DESCARTAR cereza</srai>
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+             <srai>DESCARTARPREGUNTASTAMANIO grande</srai>                   
+            
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+            <random>
+                
+                    <li>Es de sabor acido</li>
+                    <li>Es de sabor semiacido</li>
+                    <li>Es de sabor dulce</li>
+                    <li>Es de sabor neutro</li>
+                
+            </random>
+        </li>
+        
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>no</pattern>
+    <that>Es de tamanio grande</that>
+    <template>
+        <think>
+            <srai>DESCARTAR pinia</srai>
+            <srai>DESCARTAR mango</srai>
+            <srai>DESCARTAR coco</srai>
+            
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+              <srai>DESCARTARPREGUNTASTAMANIO grande</srai>                                     
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+            <random>
+                
+                    <li>Es de sabor acido</li>
+                    <li>Es de sabor semiacido</li>
+                    <li>Es de sabor dulce</li>
+                    <li>Es de sabor neutro</li>
+                
+            </random>
+        </li>
+        
+        
+        
+        
+        </condition>
+    </template>
+</category>
+<category>
+    <pattern>si</pattern>
+    <that>Es de tamanio mediano</that>
+    <template>
+        <think>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR pinia</srai>
+            <srai>DESCARTAR mango</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR mandarina</srai>
+            
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTAR coco</srai>
+            
+           
+            <srai>DESCARTAR nuez</srai>
+            <srai>DESCARTAR cereza</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTASTAMANIO mediano</srai>                                       
+            
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+            <random>
+                
+                    <li>Es de sabor acido</li>
+                    <li>Es de sabor semiacido</li>
+                    <li>Es de sabor dulce</li>
+                    <li>Es de sabor neutro</li>
+                
+            </random>
+        </li>
+        
+        
+        
+        </condition>
+    </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de tamanio mediano</that>
+    <template>
+        <think>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR naranja</srai>
+            <srai>DESCARTAR pera</srai>
+             <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR aguacate</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                
+            <srai>DESCARTARPREGUNTASTAMANIO mediano</srai>                   
+        </think>
+        
+        <!--Con un contador comprobamos el numero de frutas y si vale 1-->
+        <condition var="cantidad">
+        <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        <li>
+        
+            <random>
+                
+                    <li>Es de sabor acido</li>
+                    <li>Es de sabor semiacido</li>
+                    <li>Es de sabor dulce</li>
+                    <li>Es de sabor neutro</li>
+                
+            </random>
+        </li>
+        
+        </condition>
+    </template>
+</category>
+
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de sabor acido</that> 
+    <template>
+        
+        <think>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR mango</srai>
+            <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR cereza</srai>
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTAR platano</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            <srai>DESCARTAR nuez</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTASSABOR acido</srai>                   
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            Tiene vitamina a</li>
+                            </condition>
+                        </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de sabor acido</that> 
+    <template>
+        
+        <think>
+            <srai>DESCARTAR naranja</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR mandarina</srai>
+            <srai>DESCARTAR pinia</srai>
+        <srai>DESCARTARPREGUNTASSABOR acido</srai>                   
+            
+                            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+                                
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            
+                            <li>
+                            
+                            Tiene vitamina a
+                            </li>
+        
+                            </condition>
+                        </template>
+</category>
+
+<category>
+    <pattern>si</pattern>
+    <that>Es de sabor dulce</that> 
+    <template>
+        
+        <think>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR mandarina</srai>
+            <srai>DESCARTAR pinia</srai>
+            <srai>DESCARTAR mango</srai>
+            <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR cereza</srai>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            <srai>DESCARTAR nuez</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTASSABOR dulce</srai>                   
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            Tiene vitamina a
+                            </li>
+                            </condition>
+                        </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de sabor dulce</that> 
+    <template>
+        
+        <think>
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTAR platano</srai>
+
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+              <srai>DESCARTARPREGUNTASSABOR dulce</srai>                                     
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            Tiene vitamina a
+                            </li>
+        
+                            </condition>
+                        </template>
+</category>
+<category>
+    <pattern>si</pattern>
+    <that>Es de sabor neutro</that> 
+    <template>
+        
+        <think>
+            <srai>DESCARTAR fresa</srai>
+            <srai>DESCARTAR manzana</srai>
+            <srai>DESCARTAR naranja</srai>
+            <srai>DESCARTAR mandarina</srai>
+            <srai>DESCARTAR kiwi</srai>
+            <srai>DESCARTAR mango</srai>
+            <srai>DESCARTAR melocoton</srai>
+            <srai>DESCARTAR cereza</srai>
+            <srai>DESCARTAR higo</srai>
+            <srai>DESCARTAR ciruela</srai>
+            <srai>DESCARTAR pera</srai>
+            <srai>DESCARTAR platano</srai>
+            
+            <srai>DESCARTAR cereza</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+            <srai>DESCARTARPREGUNTASSABOR neutro</srai>                   
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            Tiene vitamina a
+                            </li>
+                            </condition>
+                        </template>
+</category>
+<category>
+    <pattern>no</pattern>
+    <that>Es de sabor neutro</that> 
+    <template>
+        
+        <think>
+            <srai>DESCARTAR coco</srai>
+            <srai>DESCARTAR aguacate</srai>
+            <srai>DESCARTAR nuez</srai>
+            <set var="cantidad"><srai>COUNT <get name="list_fruit"/></srai></set>
+             <srai>DESCARTARPREGUNTASSABOR neutro</srai>                                      
+                            </think>
+                            
+                            <condition var="cantidad">
+                            <li value="1">La fruta en la que estabas pensando es <srai>TOP <get name="list_fruit"/></srai></li>
+        
+                            <li>
+                            
+                            Tiene vitamina a
+                            </li>
+        
+        
+                            </condition>
+                        </template>
+</category>
+<!--Metodo para descartar los que ya se encuentran-->
+<category>
+	<pattern>DESCARTAR *</pattern>
+	<template>
+		<think>
+			<set var="encontrado">
+				<srai>FINDITEM <star/> IN <get name="list_fruit"/></srai>
+			</set>
+			<condition var="encontrado">
+				<li value="0"></li>
+				<li><set name="list_fruit"><srai>REMOVEITEM <get var="encontrado"/> IN <get name="list_fruit"/></srai></set></li>
+			</condition>
+		</think>
+	</template>
+</category>
+
+<!--Metodo para descartar preguntas que ya se encuentran-->
+<category>
+	<pattern>DESCARTARPREGUNTASSABOR *</pattern>
+	<template>
+		<think>
+			<set var="encontrado">
+				<srai>FINDITEM <star/> IN <get name="sabor_fruta"/></srai>
+			</set>
+			<condition var="encontrado">
+				<li value="0"></li>
+				<li><set name="lista_sabor"><srai>REMOVEITEM <get var="encontrado"/> IN <get name="sabor_fruta"/></srai></set></li>
+			</condition>
+		</think>
+	</template>
+</category>
+<category>
+	<pattern>DESCARTARPREGUNTASCOLOR *</pattern>
+	<template>
+		<think>
+			<set var="encontrado">
+				<srai>FINDITEM <star/> IN <get name="color_fruta"/></srai>
+			</set>
+			<condition var="encontrado">
+				<li value="0"></li>
+				<li><set name="lista_color"><srai>REMOVEITEM <get var="encontrado"/> IN <get name="color_fruta"/></srai></set></li>
+			</condition>
+		</think>
+	</template>
+</category>
+<category>
+	<pattern>DESCARTARPREGUNTASTAMANIO *</pattern>
+	<template>
+		<think>
+			<set var="encontrado">
+				<srai>FINDITEM <star/> IN <get name="tamanio_fruta"/></srai>
+			</set>
+			<condition var="encontrado">
+				<li value="0"></li>
+				<li><set name="lista_tamanio"><srai>REMOVEITEM <get var="encontrado"/> IN <get name="tamanio_fruta"/></srai></set></li>
+			</condition>
+		</think>
+	</template>
+</category>
+
+<category>
+	<pattern>DESCARTARPREGUNTAS *</pattern>
+	<template>
+		<think>
+			<set var="encontrado">
+				<srai>FINDITEM <star/> IN <get name="list_preguntas"/></srai>
+			</set>
+			<condition var="encontrado">
+				<li value="0"></li>
+				<li><set name="list_preguntas"><srai>REMOVEITEM <get var="encontrado"/> IN <get name="list_preguntas"/></srai></set></li>
+			</condition>
+		</think>
+	</template>
+</category>
+<!-- Resultado -->
+    
+    <category>
+            <pattern>si</pattern>
+            <that>La fruta en la que estabas pensando es ^</that>
+            <template>
+                Bien!!!!!! Lo adivine!!!! Repetimos? Escribe "juego" y repetimos la partida, o puedo preguntarte de nuevo? 
+            </template>
+        </category>
+    
+        <category>
+            <pattern>no</pattern>
+            <that>La fruta en la que estabas pensando es ^</that>
+            <template>
+                Uppps que mal, he perdido. Repetimos? Escribe "juego" y repetimos la partida, o puedo preguntarte de nuevo(con decir vale basta)?             
+            </template>
+        </category>
+
+</topic>
+
+
+</aiml>
